@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ved-test-api-service
+  labels:
+    username: ved
+    env: test
+spec:
+  type: ClusterIP
+  selector:
+    username: ved
+    env: test
+    app: ved-test-api
+  ports:
+  - name: ved-test-api-port
+    port: 5000
+    targetPort: 5005

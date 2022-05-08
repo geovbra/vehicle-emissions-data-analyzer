@@ -1,0 +1,21 @@
+FROM python:3.9
+
+RUN mkdir /app
+WORKDIR /app
+
+RUN pip install --user Flask==2.0.3
+
+RUN pip install redis
+
+RUN wget https://raw.githubusercontent.com/ReubenGitHub/ML-Vehicle-Emissions/main/data/processed/uk_gov_data_dense_preproc.csv
+
+COPY /src/api.py /app/api.py
+
+COPY /src/jobs.py /app/jobs.py
+
+RUN chmod +rx /app/api.py
+
+RUN chmod +rx /app/jobs.py
+
+ENTRYPOINT ["python3"]
+CMD ["api.py"]

@@ -2,6 +2,7 @@ import json
 from flask import Flask, request
 import jobs
 import csv
+
 app = Flask(__name__)
 
 
@@ -14,6 +15,7 @@ def how_to():
     Returns: 
         string: all of the possible inputs that the server is looking for.
     """
+
 
 
 
@@ -32,6 +34,7 @@ def read_data_from_file_into_dict():
     data = {}
     data['vehicle_emissions'] = []
     
+
 
     with open('uk_gov_data_dense_preproc.csv' , 'r', encoding = "ISO-8859-1") as f:
         reader = csv.DictReader(f)
@@ -52,6 +55,7 @@ def read_how_to():
     Returns: 
         string: all of the possible inputs that the server is looking for.
     """
+
 
 
 

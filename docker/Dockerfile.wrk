@@ -1,0 +1,17 @@
+FROM python:3.9
+
+RUN mkdir /app
+WORKDIR /app
+
+RUN pip install redis
+
+COPY src/api.py /app/wrk.py
+
+COPY src/jobs.py /app/jobs.py
+
+RUN chmod +rx /app/wrk.py
+
+RUN chmod +rx /app/jobs.py
+
+ENTRYPOINT ["python3"]
+CMD ["wrk.py"]

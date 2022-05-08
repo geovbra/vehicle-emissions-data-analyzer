@@ -21,9 +21,9 @@ spec:
         app: ved-test-api
     spec:
       containers:
-        - name: ved_test_api_pod
+        - name: ved-test-api-pod
           imagePullPolicy: Always
-          image: geovbra/ved_api:0.1.0
+          image: geovbra/vmdata-api:0.1.0
 #          env:
 #          - name: FLASK_APP
 #            value: "api.py"

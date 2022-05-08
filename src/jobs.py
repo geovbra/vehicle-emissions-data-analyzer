@@ -1,8 +1,6 @@
 import uuid
 from hotqueue import HotQueue
-
 import redis
-
 import sys
 
 q = HotQueue("queue", host=sys.argv[1], port=6379, db=1)

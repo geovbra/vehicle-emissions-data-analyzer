@@ -5,9 +5,9 @@ WORKDIR /app
 
 RUN pip install redis
 
-COPY ../src/api.py /app/wrk.py
+COPY src/api.py /app/wrk.py
 
-COPY ../src/jobs.py /app/jobs.py
+COPY src/jobs.py /app/jobs.py
 
 RUN chmod +rx /app/wrk.py
 

@@ -27,7 +27,7 @@ spec:
 #          env:
 #          - name: FLASK_APP
 #            value: "api.py"
-          command: ['sh', '-c', 'python api.py ved-test-db-service']
+          command: ['sh', '-c', 'python wrk.py ved-test-db-service']
           ports:
           - name: http
             containerPort: 5005

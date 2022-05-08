@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ved-test-api-deployment
+  labels:
+    username: ved
+    env: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      username: ved
+      env: test
+      app: ved-test-api
+  template:
+    metadata:
+      labels:
+        username: ved
+        env: test
+        app: ved-test-api
+    spec:
+      containers:
+        - name: ved_test_api_pod
+          imagePullPolicy: Always
+          image: geovbra/ved_api:0.1.0
+#          env:
+#          - name: FLASK_APP
+#            value: "api.py"
+          command: ['sh', '-c', 'python api.py ved-test-db-service']
+          ports:
+          - name: http
+            containerPort: 5005

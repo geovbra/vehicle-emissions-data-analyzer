@@ -69,7 +69,7 @@ def read(key:str):
         for row in data:
             temp_data.append(row)
     
-    else if key == "car_id":
+    elif key == "car_id":
         start = request.args.get('start')
         if type(start) != int:
             return 'please use an integer as your query parameter'
@@ -77,7 +77,7 @@ def read(key:str):
             if row['car_id'] == start:
                 temp_data.append(row)
 
-    else if key == "manufacturer":
+    elif key == "manufacturer":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -85,7 +85,7 @@ def read(key:str):
             if row['manufacturer'] == start:
                 temp_data.append(row)
 
-    else if key == "model":
+    elif key == "model":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -93,7 +93,7 @@ def read(key:str):
             if row['model'] == start:
                 temp_data.append(row)
 
-    else if key == "description":
+    elif key == "description":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -101,7 +101,7 @@ def read(key:str):
             if row['description'] == start:
                 temp_data.append(row)
   
-    else if key == "transmission":
+    elif key == "transmission":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -109,7 +109,7 @@ def read(key:str):
             if row['transmission'] == start:
                 temp_data.append(row)
 
-    else if key == "transmission_type":
+    elif key == "transmission_type":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -117,7 +117,7 @@ def read(key:str):
             if row['transmission_type'] == start:
                 temp_data.append(row)
 
-    else if key == "engine_size_cm3":
+    elif key == "engine_size_cm3":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -125,7 +125,7 @@ def read(key:str):
             if row['engine_size_cm3'] == start:
                 temp_data.append(row)
 
-    else if key == "fuel":
+    elif key == "fuel":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -133,7 +133,7 @@ def read(key:str):
             if row['fuel'] == start:
                 temp_data.append(row)
 
-    else if key == "powertrain":
+    elif key == "powertrain":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -141,7 +141,7 @@ def read(key:str):
             if row['powertrain'] == start:
                 temp_data.append(row)
 
-    else if key == "power_ps":
+    elif key == "power_ps":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'
@@ -149,7 +149,7 @@ def read(key:str):
             if row['power_ps'] == start:
                 temp_data.append(row)
 
-    else if key == "co2_emissions_gPERkm":
+    elif key == "co2_emissions_gPERkm":
         start = request.args.get('start')
         if type(start) != str:
             return 'please use a string as your query parameter'

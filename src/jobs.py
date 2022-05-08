@@ -11,13 +11,12 @@ def generate_jid():
     Generate a pseudo-random identifier for a job.
     """
     return str(uuid.uuid4())
-
 def generate_job_key(jid):
-"""
-Generate the redis key from the job id to be used when storing, retrieving or updating
-a job in the database.
-"""
-return 'job.{}'.format(jid)
+    """
+    Generate the redis key from the job id to be used when storing, retrieving or updating
+    a job in the database.
+    """
+    return 'job.{}'.format(jid)
 
 def instantiate_job(jid, status, start, end):
     """
@@ -38,7 +37,7 @@ def instantiate_job(jid, status, start, end):
 
 def save_job(job_key, job_dict):
     """Save a job object in the Redis database."""
-   rd.hset(job_key, mapping=job_dict) 
+    rd.hset(job_key, mapping=job_dict) 
 
 def queue_job(jid):
     """Add a job to the redis queue."""

@@ -70,34 +70,57 @@ def read(key:str):
 
     key = f'{key}'
 
-    if key == "all"
+    if key == "all":
         for row in data:
             temp_data.append(row)
     
-    else if key == "car_id"
+    else if key == "car_id":
         start = request.args.get('start')
-        if type(start) != int
+        if type(start) != int:
             return 'please use an integer as your query parameter'
         for row in data:
-            if row['car_id'] == start
+            if row['car_id'] == start:
                 temp_data.append(row)
 
-    else if key == "manufacturer"
+    else if key == "manufacturer":
         start = request.args.get('start')
-        if type(start) != str
+        if type(start) != str:
             return 'please use a string as your query parameter'
         for row in data:
-            if row['manufacturer'] == start
+            if row['manufacturer'] == start:
                 temp_data.append(row)
 
-    else if key == "model"
+    else if key == "model":
         start = request.args.get('start')
-        if type(start) != str
+        if type(start) != str:
             return 'please use a string as your query parameter'
         for row in data:
-            if row['model'] == start
+            if row['model'] == start:
                 temp_data.append(row)
 
+    else if key == "description":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['description'] == start:
+                temp_data.append(row)
+  
+    else if key == "transmission":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['transmission'] == start:
+                temp_data.append(row)
+
+    else if key == "transmission_type":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['transmission_type'] == start:
+                temp_data.append(row)
 
     return jsonify(temp_data)
 

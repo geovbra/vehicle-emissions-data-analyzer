@@ -171,8 +171,63 @@ def read(key:str):
 
     return jsonify(temp_data)
 
-   
 
+@app.route('/update/<string:ID>', methods=['POST'])
+def update_data(ID:str):
+
+    ID = int(float(ID))
+
+    temp_data = json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']
+
+    field = request.args.get('field')
+    value = request.args.get('value')
+
+    if field == 'car_id':
+        return 'You cannot alter the car_id!'
+    if field != 'manufacturer' or field != 'model' or field != 'description' or field != 'transmission' or field != 'trasnmission_type' or field != 'engine_size_cm3' or field != 'fuel' or field != 'powertrain' or field != 'power_ps' or field != 'co2_emissions_gPERkm':
+        return 'please enter a valid string for field.'
+
+    temp_data[ID][field] = value
+
+    rd.set('vehicle_emissions', json.dumps(temp_data))
+
+    return jsonify(temp_data)
+
+@app.route('/create/new_entry', methods=['POST'])
+def create_data():
+    
+    temp_data = json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']
+
+    manufacturer = request.args.get('manufacturer')
+    model = request.args.get('model')
+    description = request.args.get('description')
+    transmission = request.args.get('transmission')
+    transmission_type = request.args.get('transmission_type')
+    engine_size_cm3 = request.args.get('engine_size_cm3')
+    fuel = request.args.get('fuel')
+    powertrain = request.args.get('powertrain')
+    power_ps = request.args.get('power_ps')
+    co2_emissions_gPERkm = request.args.get('co2_emissions_gPERkm')
+
+    length = len(temp_data)
+
+    data_new = {}
+
+    data_new['car_id'] = str(float(length + 1))
+    data_new['manufacturer'] = manufacturer
+    data_new['model'] = model
+    data_new['description'] = description
+    data_new['transmission'] = transmission
+    data_new['transmission_type'] = transmission_type
+    data_new['engine_size_cm3'] = engine_size_cm3
+    data_new['fuel'] = fuel
+    data_new['powertrain'] = powertrain
+    data_new['power_ps'] = power_ps
+    data_new['co2_emissions_gPERkm'] = co2_emsissions_gPERkm
+
+    temp_data.append(data_new)
+
+    rd.set('vehicle_emissions', json.dumps(temp_data))
 
 @app.route('/jobs', methods=['POST'])
 def jobs_api():
@@ -180,8 +235,6 @@ def jobs_api():
     API route for creating a new job to do some analysis. This route accepts a JSON payload
     describing the job to be created.
     """
-
-
     try:
         job = request.get_json(force=True)
     except Exception as e:

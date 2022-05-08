@@ -2,7 +2,6 @@ import json
 from flask import Flask, request
 import jobs
 import csv
-import redis
 app = Flask(__name__)
 
 
@@ -120,6 +119,46 @@ def read(key:str):
             return 'please use a string as your query parameter'
         for row in data:
             if row['transmission_type'] == start:
+                temp_data.append(row)
+
+    else if key == "engine_size_cm3":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['engine_size_cm3'] == start:
+                temp_data.append(row)
+
+    else if key == "fuel":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['fuel'] == start:
+                temp_data.append(row)
+
+    else if key == "powertrain":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['powertrain'] == start:
+                temp_data.append(row)
+
+    else if key == "power_ps":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['power_ps'] == start:
+                temp_data.append(row)
+
+    else if key == "co2_emissions_gPERkm":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['co2_emissions_gPERkm'] == start:
                 temp_data.append(row)
 
     return jsonify(temp_data)

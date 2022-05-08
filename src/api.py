@@ -1,5 +1,5 @@
 import json
-import flask
+from flask import Flask, request, jsonify
 import jobs
 import csv
 import redis

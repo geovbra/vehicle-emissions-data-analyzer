@@ -2,7 +2,7 @@ import json
 from flask import Flask, request
 import jobs
 import csv
-
+import redis
 app = Flask(__name__)
 
 

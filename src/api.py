@@ -2,9 +2,15 @@ import json
 from flask import Flask, request
 import jobs
 import csv
+import redis
+import sys
 app = Flask(__name__)
 
 
+rd = redis.StrictRedis(host=sys.argv[1], port=6379, db=0)
+
+
+data = {}
 
 @app.route('/', methods=['GET'])
 def how_to():
@@ -29,7 +35,8 @@ def read_data_from_file_into_dict():
         string: informing the user that the data is now available for use.
     """
 
-    data = {}
+    global data
+
     data['vehicle_emissions'] = []
     
 
@@ -66,13 +73,14 @@ def read(key:str):
     key = f'{key}'
 
     if key == "all":
-        for row in data:
+        for row in data['vehicle_emissions']:
             temp_data.append(row)
     
     elif key == "car_id":
         start = request.args.get('start')
-        if type(start) != int:
-            return 'please use an integer as your query parameter'
+	
+        #if type(start) != int:
+        #    return 'please use an integer as your query parameter'
         for row in data:
             if row['car_id'] == start:
                 temp_data.append(row)

@@ -67,13 +67,38 @@ def read(key:str):
     logging.debug('used GET to access specific data specified by a key')
 
     temp_data = []
-    
+
     key = f'{key}'
 
     if key == "all"
         for row in data:
             temp_data.append(row)
     
+    else if key == "car_id"
+        start = request.args.get('start')
+        if type(start) != int
+            return 'please use an integer as your query parameter'
+        for row in data:
+            if row['car_id'] == start
+                temp_data.append(row)
+
+    else if key == "manufacturer"
+        start = request.args.get('start')
+        if type(start) != str
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['manufacturer'] == start
+                temp_data.append(row)
+
+    else if key == "model"
+        start = request.args.get('start')
+        if type(start) != str
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['model'] == start
+                temp_data.append(row)
+
+
     return jsonify(temp_data)
 
    

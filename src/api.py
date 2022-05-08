@@ -6,6 +6,22 @@ import csv
 app = Flask(__name__)
 
 
+
+@app.route('/', methods=['GET'])
+def how_to():
+
+    """
+    Shows how to use the app to get the results you want.
+    Returns: 
+        string: all of the possible inputs that the server is looking for.
+    """
+
+
+    logging.debug('used GET to access "how_to"')
+
+    return 'test'
+
+
 @app.route('/reset', methods=['POST'])
 def read_data_from_file_into_dict():
     
@@ -30,6 +46,37 @@ def read_data_from_file_into_dict():
     return f'Data has been read from file\n'
 
 # now emissions_data will be accessible to other functions
+
+@app.route('/read', methods=['GET'])
+def read_how_to():
+
+    """
+    Shows how to use the read route to get the desired data output.
+    Returns: 
+        string: all of the possible inputs that the server is looking for.
+    """
+
+
+    logging.debug('used GET to access "how_to"')
+
+    return 'test_read_how_to'
+
+
+@app.route('/read/<string:key>', methods=['GET'])
+def read(key:str):
+    logging.debug('used GET to access specific data specified by a key')
+
+    temp_data = []
+    
+    key = f'{key}'
+
+    if key == "all"
+        for row in data:
+            temp_data.append(row)
+    
+    return jsonify(temp_data)
+
+   
 
 
 @app.route('/jobs', methods=['POST'])

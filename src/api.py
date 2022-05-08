@@ -229,6 +229,34 @@ def create_data():
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
 
+@app.route('/delete', methods=['GET'])
+def delete_how_to():
+    """
+    Shows how to use the delete route to get the desired data output.
+    Returns:
+        string: all of the possible inputs that the server is looking for.
+    """
+
+@app.route("/delete/<string:field>", methods=['POST'])
+def delete(field:str):
+
+    temp_data = json.loads(rd.get('vehicle_emissions'))
+    new_data = {}
+    new_data['vehicle_emissions'] = []
+    value = request.args.get('value')
+
+    for row in temp_data['vehicle_emissions']:
+        if row[field] != value:
+            new_data['vehicle_emissions'].append(dict(row))
+
+    rd.set('vehicle_emissions', json.dumps(new_data))
+
+    if temp_data == new_data:
+        return "no data entries contain the field-value pair entered"
+
+    return "data successfully deleted"
+
+
 @app.route('/jobs', methods=['POST'])
 def jobs_api():
     """

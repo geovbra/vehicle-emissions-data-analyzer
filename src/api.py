@@ -13,6 +13,7 @@ rd = redis.StrictRedis(host=sys.argv[1], port=6379, db=0)
 
 data = {}
 
+
 @app.route('/', methods=['GET'])
 def how_to():
 
@@ -21,6 +22,7 @@ def how_to():
     Returns: 
         string: all of the possible inputs that the server is looking for.
     """
+
 
 
 
@@ -40,7 +42,6 @@ def read_data_from_file_into_dict():
 
     data['vehicle_emissions'] = []
     
-
     with open('uk_gov_data_dense_preproc.csv' , 'r', encoding = "ISO-8859-1") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -63,6 +64,7 @@ def read_how_to():
 
 
 
+
     return 'test_read_how_to'
 
 
@@ -82,6 +84,7 @@ def read(key:str):
 	
         #if type(start) != int:
         #    return 'please use an integer as your query parameter'
+
         for row in data:
             if row['car_id'] == start:
                 temp_data.append(row)

@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ved-test-db-service
+  labels:
+    name: ved
+    env: test
+spec:
+  type: ClusterIP
+  selector:
+    username: ved
+    env: test
+    app: ved-test-db
+  ports:
+  - name: ved-test-db-port
+    port: 6379
+    targetPort: 6379

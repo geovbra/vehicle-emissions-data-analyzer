@@ -1,6 +1,6 @@
 NSPACE="geovbra"
 APP="vmdata"
-VER="0.1"
+VER="0.1.0"
 RPORT="6405"
 FPORT="5005"
 UID="876469"

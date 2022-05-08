@@ -11,6 +11,7 @@ def generate_jid():
     Generate a pseudo-random identifier for a job.
     """
     return str(uuid.uuid4())
+
 def generate_job_key(jid):
     """
     Generate the redis key from the job id to be used when storing, retrieving or updating

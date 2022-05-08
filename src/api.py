@@ -17,7 +17,7 @@ def how_to():
     """
 
 
-    logging.debug('used GET to access "how_to"')
+
 
     return 'test'
 
@@ -34,7 +34,7 @@ def read_data_from_file_into_dict():
     data = {}
     data['vehicle_emissions'] = []
     
-    logging.debug('used POST to read in data')
+
 
     with open('uk_gov_data_dense_preproc.csv' , 'r', encoding = "ISO-8859-1") as f:
         reader = csv.DictReader(f)
@@ -57,23 +57,110 @@ def read_how_to():
     """
 
 
-    logging.debug('used GET to access "how_to"')
+
 
     return 'test_read_how_to'
 
 
 @app.route('/read/<string:key>', methods=['GET'])
 def read(key:str):
-    logging.debug('used GET to access specific data specified by a key')
 
     temp_data = []
-    
+
     key = f'{key}'
 
-    if key == "all"
+    if key == "all":
         for row in data:
             temp_data.append(row)
     
+    elif key == "car_id":
+        start = request.args.get('start')
+        if type(start) != int:
+            return 'please use an integer as your query parameter'
+        for row in data:
+            if row['car_id'] == start:
+                temp_data.append(row)
+
+    elif key == "manufacturer":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['manufacturer'] == start:
+                temp_data.append(row)
+
+    elif key == "model":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['model'] == start:
+                temp_data.append(row)
+
+    elif key == "description":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['description'] == start:
+                temp_data.append(row)
+  
+    elif key == "transmission":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['transmission'] == start:
+                temp_data.append(row)
+
+    elif key == "transmission_type":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['transmission_type'] == start:
+                temp_data.append(row)
+
+    elif key == "engine_size_cm3":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['engine_size_cm3'] == start:
+                temp_data.append(row)
+
+    elif key == "fuel":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['fuel'] == start:
+                temp_data.append(row)
+
+    elif key == "powertrain":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['powertrain'] == start:
+                temp_data.append(row)
+
+    elif key == "power_ps":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['power_ps'] == start:
+                temp_data.append(row)
+
+    elif key == "co2_emissions_gPERkm":
+        start = request.args.get('start')
+        if type(start) != str:
+            return 'please use a string as your query parameter'
+        for row in data:
+            if row['co2_emissions_gPERkm'] == start:
+                temp_data.append(row)
+
     return jsonify(temp_data)
 
    
@@ -94,4 +181,4 @@ def jobs_api():
     return json.dumps(jobs.add_job(job['start'], job['end']))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port = '5005')

@@ -10,6 +10,7 @@ app = Flask(__name__)
 rd = redis.StrictRedis(host=sys.argv[1], port=6379, db=0)
 
 
+
 data = {}
 
 @app.route('/', methods=['GET'])

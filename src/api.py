@@ -16,7 +16,6 @@ def how_to():
     """
 
 
-    logging.debug('used GET to access "how_to"')
 
     return 'test'
 
@@ -33,7 +32,6 @@ def read_data_from_file_into_dict():
     data = {}
     data['vehicle_emissions'] = []
     
-    logging.debug('used POST to read in data')
 
     with open('uk_gov_data_dense_preproc.csv' , 'r', encoding = "ISO-8859-1") as f:
         reader = csv.DictReader(f)
@@ -56,14 +54,12 @@ def read_how_to():
     """
 
 
-    logging.debug('used GET to access "how_to"')
 
     return 'test_read_how_to'
 
 
 @app.route('/read/<string:key>', methods=['GET'])
 def read(key:str):
-    logging.debug('used GET to access specific data specified by a key')
 
     temp_data = []
 
@@ -181,4 +177,4 @@ def jobs_api():
     return json.dumps(jobs.add_job(job['start'], job['end']))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port = '5005')

@@ -223,7 +223,7 @@ def create_data():
     data_new['fuel'] = fuel
     data_new['powertrain'] = powertrain
     data_new['power_ps'] = power_ps
-    data_new['co2_emissions_gPERkm'] = co2_emsissions_gPERkm
+    data_new['co2_emissions_gPERkm'] = co2_emissions_gPERkm
 
     temp_data.append(data_new)
 

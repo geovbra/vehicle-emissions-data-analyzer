@@ -179,10 +179,13 @@ def update_data(ID:str):
 
     temp_data = json.loads(rd.get('vehicle_emissions'))
 
-    qparams = request.args.to_dict()
+    try:
+        params = request.get_json(force=True)
+    except Exception as e:
+        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
 
-    field = qparams['field']
-    value = qparams['value']
+    field = params['field']
+    value = params['value']
 
     if field == 'car_id':
         return 'You cannot alter the car_id!'

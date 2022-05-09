@@ -170,12 +170,16 @@ def update_data(ID:str):
         return 'You cannot alter the car_id!'
     if field != 'manufacturer' and field != 'model' and field != 'description' and field != 'transmission' and field != 'trasnmission_type' and field != 'engine_size_cm3' and field != 'fuel' and field != 'powertrain' and field != 'power_ps' and field != 'co2_emissions_gPERkm':
         return 'please enter a valid string for field.'
-
-    temp_data['vehicle_emissions'][ID - 1][field] = value
+    updated_entry = {}  
+ 
+    for row in temp_data['vehicle_emissions']:
+        if row['car_id'] == ID:
+            row[field] = value
+            updated_entry = row['car_id']
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
 
-    return jsonify(temp_data['vehicle_emissions'][ID-1])
+    return jsonify(updated_entry)
 
 @app.route('/create/new_entry', methods=['POST'])
 def create_data():
@@ -202,10 +206,11 @@ def create_data():
         return "Please provide a JSON dictionary containing values for all fields (except for car_id)"
 
     length = len(temp_data['vehicle_emissions'])
+    last_val = temp_data['vehicle_emissions'][length]['car_id']
 
     data_new = {}
 
-    data_new['car_id'] = str(float(length + 1))
+    data_new['car_id'] = str(float(last_val + 1))
     data_new['manufacturer'] = manufacturer
     data_new['model'] = model
     data_new['description'] = description

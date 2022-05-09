@@ -187,11 +187,11 @@ def update_data(ID:str):
     if field != 'manufacturer' or field != 'model' or field != 'description' or field != 'transmission' or field != 'trasnmission_type' or field != 'engine_size_cm3' or field != 'fuel' or field != 'powertrain' or field != 'power_ps' or field != 'co2_emissions_gPERkm':
         return 'please enter a valid string for field.'
 
-    temp_data[ID][field] = value
+    temp_data['vehicle_emissions'][ID+1][field] = value
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
 
-    return jsonify(temp_data)
+    return jsonify(temp_data['vehicle_emissions'][ID+1])
 
 @app.route('/create/new_entry', methods=['POST'])
 def create_data():
@@ -225,10 +225,10 @@ def create_data():
     data_new['power_ps'] = power_ps
     data_new['co2_emissions_gPERkm'] = co2_emissions_gPERkm
 
-    temp_data.append(data_new)
+    temp_data['vehicle_emissions'].append(data_new)
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
-    return 'success'
+    return jsonify(data_new)
 
 @app.route('/delete', methods=['GET'])
 def delete_how_to():

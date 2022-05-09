@@ -179,19 +179,21 @@ def update_data(ID:str):
 
     temp_data = json.loads(rd.get('vehicle_emissions'))
 
-    field = request.args.get('field')
-    value = request.args.get('value')
+    qparams = request.args.to_dict()
+
+    field = qparams['field']
+    value = qparams['value']
 
     if field == 'car_id':
         return 'You cannot alter the car_id!'
     if field != 'manufacturer' and field != 'model' and field != 'description' and field != 'transmission' and field != 'trasnmission_type' and field != 'engine_size_cm3' and field != 'fuel' and field != 'powertrain' and field != 'power_ps' and field != 'co2_emissions_gPERkm':
         return 'please enter a valid string for field.'
 
-    temp_data['vehicle_emissions'][ID+1][field] = value
+    temp_data['vehicle_emissions'][ID - 1][field] = value
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
 
-    return jsonify(temp_data['vehicle_emissions'][ID+1])
+    return jsonify(temp_data['vehicle_emissions'][ID-1])
 
 @app.route('/create/new_entry', methods=['POST'])
 def create_data():

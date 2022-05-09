@@ -81,8 +81,6 @@ def read(key:str):
     
     elif key == "car_id":
         start = request.args.get('start')
-        if not start.isnumeric():
-            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['car_id'] == start:
                 temp_data.append(row)
@@ -119,8 +117,6 @@ def read(key:str):
 
     elif key == "engine_size_cm3":
         start = request.args.get('start')
-        if not start.isnumeric():
-            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['engine_size_cm3'] == start:
                 temp_data.append(row)
@@ -139,16 +135,12 @@ def read(key:str):
 
     elif key == "power_ps":
         start = request.args.get('start')
-        if not start.isnumeric():
-            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['power_ps'] == start:
                 temp_data.append(row)
 
     elif key == "co2_emissions_gPERkm":
         start = request.args.get('start')
-        if not start.isnumeric():
-            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['co2_emissions_gPERkm'] == start:
                 temp_data.append(row)

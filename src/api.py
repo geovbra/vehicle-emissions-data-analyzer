@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import jobs
 import csv
 import redis
@@ -270,7 +270,7 @@ def jobs_list():
     key_string = []    
 
     for key in jd.keys():
-        key_string = jsonify(jd.get(key))
+        key_string += jsonify(jd.get(key))
 
     return key_string
 
@@ -285,6 +285,15 @@ def jobs_api():
     except Exception as e:
         return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
     return json.dumps(jobs.add_job(job['type'], job['field_1'], job['field_2']))
+
+
+@app.route('/jobs/download/<jobid>', methods=['GET'])
+def download(jobid):
+    path = f'/app/{jobid}.png'
+    with open(path, 'wb') as f:
+        f.write(jd.hget(jobid, 'image'))
+    return send_file(path, mimetype='image/png', as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port = '5005')

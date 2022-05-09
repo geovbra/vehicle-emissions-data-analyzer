@@ -7,13 +7,13 @@ RUN pip install --user redis
 
 RUN pip install --user hotqueue
 
-COPY src/api.py /app/wrk.py
+COPY src/worker.py /app/worker.py
 
 COPY src/jobs.py /app/jobs.py
 
-RUN chmod +rx /app/wrk.py
+RUN chmod +rx /app/worker.py
 
 RUN chmod +rx /app/jobs.py
 
 ENTRYPOINT ["python3"]
-CMD ["wrk.py"]
+CMD ["worker.py"]

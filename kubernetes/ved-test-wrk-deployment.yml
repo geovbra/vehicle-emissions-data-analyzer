@@ -21,7 +21,7 @@ spec:
         app: ved-test-wrk
     spec:
       containers:
-        - name: ved-test-api-pod
+        - name: ved-test-wrk-pod
           imagePullPolicy: Always
           image: geovbra/vmdata-wrk:0.1.0
 #          env:

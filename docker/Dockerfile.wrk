@@ -7,9 +7,9 @@ RUN pip install --user redis
 
 RUN pip install --user hotqueue
 
-COPY src/worker.py /app/worker.py
+COPY /src/worker.py /app/worker.py
 
-COPY src/jobs.py /app/jobs.py
+COPY /src/jobs.py /app/jobs.py
 
 RUN chmod +rx /app/worker.py
 

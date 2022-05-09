@@ -228,6 +228,7 @@ def create_data():
     temp_data.append(data_new)
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
+    return 'success'
 
 @app.route('/delete', methods=['GET'])
 def delete_how_to():

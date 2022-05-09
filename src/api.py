@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 rd = redis.StrictRedis(host=sys.argv[1], port=6379, db=0)
-
+jd = redis.StrictRedis(host=sys.argv[1], port=6379, db=2)
 
 
 data = {}
@@ -234,6 +234,7 @@ def delete_how_to():
     Returns:
         string: all of the possible inputs that the server is looking for.
     """
+    return 'delete_test'
 
 @app.route("/delete/<string:field>", methods=['POST'])
 def delete(field:str):
@@ -254,8 +255,26 @@ def delete(field:str):
 
     return "data successfully deleted"
 
+@app.route('/jobs', methods=['GET'])
+def jobs_how_to():
+    """
+    Shows how to use the delete route to get the desired data output.
+    Returns:
+        string: all of the possible inputs that the server is looking for.
+    """
+    return 'jobs_test'
 
-@app.route('/jobs', methods=['POST'])
+@app.route('/jobs/list', methods=['GET'])
+def jobs_list():
+
+    key_string = []    
+
+    for key in jd.keys():
+        key_string = jsonify(jd.get(key))
+
+    return key_string
+
+@app.route('/jobs/new_job', methods=['POST'])
 def jobs_api():
     """
     API route for creating a new job to do some analysis. This route accepts a JSON payload
@@ -265,7 +284,7 @@ def jobs_api():
         job = request.get_json(force=True)
     except Exception as e:
         return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
-    return json.dumps(jobs.add_job(job['start'], job['end']))
+    return json.dumps(jobs.add_job(job['type'], job['field_1'], job['field_2']))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port = '5005')

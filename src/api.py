@@ -173,9 +173,9 @@ def update_data(ID:str):
     updated_entry = {}  
  
     for row in temp_data['vehicle_emissions']:
-        if row['car_id'] == ID:
+        if int(float(row['car_id'])) == ID:
             row[field] = value
-            updated_entry = row['car_id']
+            updated_entry = row
 
     rd.set('vehicle_emissions', json.dumps(temp_data))
 
@@ -206,7 +206,7 @@ def create_data():
         return "Please provide a JSON dictionary containing values for all fields (except for car_id)"
 
     length = len(temp_data['vehicle_emissions'])
-    last_val = temp_data['vehicle_emissions'][length]['car_id']
+    last_val = temp_data['vehicle_emissions'][length-1]['car_id']
 
     data_new = {}
 

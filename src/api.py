@@ -206,7 +206,7 @@ def create_data():
         return "Please provide a JSON dictionary containing values for all fields (except for car_id)"
 
     length = len(temp_data['vehicle_emissions'])
-    last_val = temp_data['vehicle_emissions'][length-1]['car_id']
+    last_val = int(float(temp_data['vehicle_emissions'][length-1]['car_id']))
 
     data_new = {}
 

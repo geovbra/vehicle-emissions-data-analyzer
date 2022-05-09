@@ -177,7 +177,7 @@ def update_data(ID:str):
 
     ID = int(float(ID))
 
-    temp_data = json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']
+    temp_data = json.loads(rd.get('vehicle_emissions'))
 
     field = request.args.get('field')
     value = request.args.get('value')
@@ -196,7 +196,7 @@ def update_data(ID:str):
 @app.route('/create/new_entry', methods=['POST'])
 def create_data():
     
-    temp_data = json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']
+    temp_data = json.loads(rd.get('vehicle_emissions'))
 
     manufacturer = request.args.get('manufacturer')
     model = request.args.get('model')

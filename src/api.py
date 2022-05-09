@@ -81,90 +81,74 @@ def read(key:str):
     
     elif key == "car_id":
         start = request.args.get('start')
-	
-        #if type(start) != int:
-        #    return 'please use an integer as your query parameter'
-
+        if not start.isnumeric():
+            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['car_id'] == start:
                 temp_data.append(row)
 
     elif key == "manufacturer":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['manufacturer'] == start:
                 temp_data.append(row)
 
     elif key == "model":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['model'] == start:
                 temp_data.append(row)
 
     elif key == "description":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['description'] == start:
                 temp_data.append(row)
   
     elif key == "transmission":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['transmission'] == start:
                 temp_data.append(row)
 
     elif key == "transmission_type":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['transmission_type'] == start:
                 temp_data.append(row)
 
     elif key == "engine_size_cm3":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
+        if not start.isnumeric():
+            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['engine_size_cm3'] == start:
                 temp_data.append(row)
 
     elif key == "fuel":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['fuel'] == start:
                 temp_data.append(row)
 
     elif key == "powertrain":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['powertrain'] == start:
                 temp_data.append(row)
 
     elif key == "power_ps":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
+        if not start.isnumeric():
+            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['power_ps'] == start:
                 temp_data.append(row)
 
     elif key == "co2_emissions_gPERkm":
         start = request.args.get('start')
-        if type(start) != str:
-            return 'please use a string as your query parameter'
+        if not start.isnumeric():
+            return 'please use a float as your query parameter (ie: 1.0 or 524.0)'
         for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
             if row['co2_emissions_gPERkm'] == start:
                 temp_data.append(row)

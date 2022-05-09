@@ -80,3 +80,5 @@ clean-all: clean-db clean-api clean-wrk
 push-all: push-api push-wrk
 
 all: clean-all build-all run-all 
+
+upd-all: build-api build-wrk push-api push-wrk

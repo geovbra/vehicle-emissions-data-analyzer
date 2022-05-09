@@ -28,14 +28,14 @@ def instantiate_job(jid, status, plot_type, field_1, field_2):
     if type(jid) == str:
         return {'id': jid,
                 'status': status,
-                'plot_type': plot_type
-                'field_1': field_1
+                'plot_type': plot_type,
+                'field_1': field_1,
                 'field_2': field_2
         }
     return {'id': jid.decode('utf-8'),
             'status': status.decode('utf-8'),
-            'plot_type': plot_type.decode('utf-8')
-            'field_1': field_1.decode('utf-8')
+            'plot_type': plot_type.decode('utf-8'),
+            'field_1': field_1.decode('utf-8'),
             'field_2': field_2.decode('utf-8')
     }
 

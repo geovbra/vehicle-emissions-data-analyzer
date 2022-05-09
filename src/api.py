@@ -166,13 +166,13 @@ def update_data(ID:str):
     try:
         params = request.get_json(force=True)
     except Exception as e:
-        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
+        return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
 
     try:
         field = params['field']
         value = params['value']
     except Exception as e:
-        return True, "Please provide a JSON dictionary with keys \"field\" and \"value\""
+        return "Please provide a JSON dictionary with keys \"field\" and \"value\""
 
     if field == 'car_id':
         return 'You cannot alter the car_id!'
@@ -193,7 +193,7 @@ def create_data():
     try:
         params = request.get_json(force=True)
     except Exception as e:
-        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
+        return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
     
     try:
         manufacturer = params['manufacturer']
@@ -207,7 +207,7 @@ def create_data():
         power_ps = params['power_ps']
         co2_emissions_gPERkm = params['co2_emissions_gPERkm']
     except Exception as e:
-        return True, "Please provide a JSON dictionary containing values for all fields (except for car_id)"
+        return "Please provide a JSON dictionary containing values for all fields (except for car_id)"
 
     length = len(temp_data['vehicle_emissions'])
 
@@ -267,7 +267,7 @@ def jobs_api():
     try:
         job = request.get_json(force=True)
     except Exception as e:
-        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
+        return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
     return json.dumps(jobs.add_job(job['start'], job['end']))
 
 if __name__ == '__main__':

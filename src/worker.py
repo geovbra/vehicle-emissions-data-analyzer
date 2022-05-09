@@ -1,4 +1,4 @@
-from jobs import q, update_job_status
+import jobs
 
 @q.worker
 def execute_job(jid):

@@ -184,8 +184,11 @@ def update_data(ID:str):
     except Exception as e:
         return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
 
-    field = params['field']
-    value = params['value']
+    try:
+        field = params['field']
+        value = params['value']
+    except Exception as e:
+        return True, "Please provide a JSON dictionary with keys \"field\" and \"value\""
 
     if field == 'car_id':
         return 'You cannot alter the car_id!'
@@ -203,16 +206,24 @@ def create_data():
     
     temp_data = json.loads(rd.get('vehicle_emissions'))
 
-    manufacturer = request.args.get('manufacturer')
-    model = request.args.get('model')
-    description = request.args.get('description')
-    transmission = request.args.get('transmission')
-    transmission_type = request.args.get('transmission_type')
-    engine_size_cm3 = request.args.get('engine_size_cm3')
-    fuel = request.args.get('fuel')
-    powertrain = request.args.get('powertrain')
-    power_ps = request.args.get('power_ps')
-    co2_emissions_gPERkm = request.args.get('co2_emissions_gPERkm')
+    try:
+        params = request.get_json(force=True)
+    except Exception as e:
+        return True, json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
+    
+    try:
+        manufacturer = params['manufacturer']
+        model = params['model']
+        description = params['description']
+        transmission = params['transmission']
+        transmission_type = params['transmission_type']
+        engine_size_cm3 = params['engine_size_cm3']
+        fuel = params['fuel']
+        powertrain = params['powertrain']
+        power_ps = params['power_ps']
+        co2_emissions_gPERkm = params['co2_emissions_gPERkm']
+    except Exception as e:
+        return True, "Please provide a JSON dictionary containing values for all fields (except for car_id)"
 
     length = len(temp_data['vehicle_emissions'])
 

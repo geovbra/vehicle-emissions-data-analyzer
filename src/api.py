@@ -184,7 +184,7 @@ def update_data(ID:str):
 
     if field == 'car_id':
         return 'You cannot alter the car_id!'
-    if field != 'manufacturer' or field != 'model' or field != 'description' or field != 'transmission' or field != 'trasnmission_type' or field != 'engine_size_cm3' or field != 'fuel' or field != 'powertrain' or field != 'power_ps' or field != 'co2_emissions_gPERkm':
+    if field != 'manufacturer' and field != 'model' and field != 'description' and field != 'transmission' and field != 'trasnmission_type' and field != 'engine_size_cm3' and field != 'fuel' and field != 'powertrain' and field != 'power_ps' and field != 'co2_emissions_gPERkm':
         return 'please enter a valid string for field.'
 
     temp_data['vehicle_emissions'][ID+1][field] = value
@@ -209,7 +209,7 @@ def create_data():
     power_ps = request.args.get('power_ps')
     co2_emissions_gPERkm = request.args.get('co2_emissions_gPERkm')
 
-    length = len(temp_data)
+    length = len(temp_data['vehicle_emissions'])
 
     data_new = {}
 

@@ -4,6 +4,7 @@ import redis
 import sys
 import numpy as np
 import matplotlib.pyplot as plt       
+import json
 
 q = HotQueue("queue", host=sys.argv[1], port=6379, db=1)
 rd = redis.StrictRedis(host=sys.argv[1], port=6379, db=0)

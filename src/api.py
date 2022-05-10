@@ -316,7 +316,7 @@ def jobs_api():
 def download(jobid):
     path = f'/app/{jobid}.png'
     with open(path, 'wb') as f:
-        f.write(jd.hget(jobs.get_job_by_id(jobid), b'image'))
+        f.write(jd.hget(jobs.generate_job_key(jobid).encode(), b'image'))
     return send_file(path, mimetype='image/png', as_attachment=True)
 
 

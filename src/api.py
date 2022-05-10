@@ -26,7 +26,7 @@ def how_to():
 
 
 
-    return '\n\n----------------------------------------\nHow to use our Vehicle Emissions Analyzer\n----------------------------------------\n\nStep 1:\nReset the data in the kubernetes database by running a curl request with endpoint /reset -X POST\n\nStep 2:\nEvery part of CRUD is available. For instructions on how to use each route, use:\n    /create\n    /read\n    /update\n    /delete\n\n'
+    return '\n\n----------------------------------------\nHow to use our Vehicle Emissions Analyzer\n----------------------------------------\n\nStep 1:\nReset the data in the kubernetes database by running a curl request with endpoint /reset -X POST\n\nStep 2:\nEvery part of CRUD is available. For instructions on how to use each route, use:\n    /create\n    /read\n    /update\n    /delete\n    /jobs\n\n'
 
 @app.route('/reset', methods=['POST'])
 def read_data_from_file_into_dict():

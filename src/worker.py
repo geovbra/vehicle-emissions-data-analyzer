@@ -41,6 +41,7 @@ def execute_job(jid):
             average = total/iters
             y_axis.append(average)
             iters = 0
+            total = 0
 
         plt.bar(x_axis, y_axis, width = 0.3)
 

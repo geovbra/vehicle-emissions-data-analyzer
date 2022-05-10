@@ -49,7 +49,7 @@ def execute_job(jid):
         plt.xlabel(field_1)
         plt.ylabel(field_2)
         plt.savefig('bar_plot.png')
-        plt.tight_layout(pad=25)
+        plt.tight_layout()
         
         with open('bar_plot.png', 'rb') as f:
             img = f.read()

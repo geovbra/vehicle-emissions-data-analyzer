@@ -20,7 +20,7 @@ def execute_job(jid):
     job_info = jd.hgetall(jobid)
     
     data = json.loads(rd.get('vehicle_emissions'))
-
+    plt.figure()
     if job_info['plot_type'.encode()].decode() == "bar":
         field_1 = job_info['field_1'.encode()].decode()
         field_2 = job_info['field_2'.encode()].decode()

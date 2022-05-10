@@ -22,8 +22,8 @@ def execute_job(jid):
     data = json.loads(rd.get('vehicle_emissions'))
 
     if job_info['plot_type'.encode()].decode() == "bar":
-        field_1 = job_info['field_1'].decode()
-        field_2 = job_info['field_2'].decode()
+        field_1 = job_info['field_1'.encode()].decode()
+        field_2 = job_info['field_2'.encode()].decode()
         x_axis = []
         y_axis = []
         total = 0
@@ -57,8 +57,8 @@ def execute_job(jid):
 
     elif job_info['plot_type'.encode()].decode() == "scatter":
 
-        field_1 = job_info['field_1'].decode()
-        field_2 = job_info['field_2'].decode()
+        field_1 = job_info['field_1'.encode()].decode()
+        field_2 = job_info['field_2'.encode()].decode()
         x_axis = []
         y_axis = []
 

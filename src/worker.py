@@ -44,7 +44,7 @@ def execute_job(jid):
             total = 0
 
         plt.bar(x_axis, y_axis, width = 0.3)
-
+        plt.xticks(rotation=90)
         plt.title('{} vs {}'.format(field_1, field_2))
         plt.xlabel(field_1)
         plt.ylabel(field_2)

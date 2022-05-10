@@ -284,11 +284,11 @@ def delete(field:str):
 @app.route('/jobs', methods=['GET'])
 def jobs_how_to():
     """
-    Shows how to use the delete route to get the desired data output.
+    Shows how to use the jobs routes to get the desired data output.
     Returns:
         string: all of the possible inputs that the server is looking for.
     """
-    return 'jobs_test'
+    return '\n\nHow to use /jobs\n\nThere are 4 options for /jobs:\nOption 1:\n    /jobs/list:\n        Syntax:\n        /jobs/list\n\n        Returns:\n        All of the jobs\n\nOption 2:\n    /jobs/new_job\n        Syntax:\n        /jobs/new_job -X POST -H "Content-Type: application/json" -d \'{"plot_type": "VALUE1", "field_1": "VALUE2", "field_2": "VALUE3"}\' with the "VALUES" being user inputs.\n\n    What the inputs can be:\n    VALUE1:\n        bar or scatter\n    VALUE2:\n        x axis values (If using scatter it can only be car_id, engine_size_cm3, power_ps, and co2_emissions_gPERkm. If using bar it can be all of the other fields.)\n    VALUE3:\n        y axis values (it can only be car_id, engine_size_cm3, power_ps, and co2_emissions_gPERkm)\n\n    Example:\n        /jobs/new_job -X POST -H "Content-Type: application/json" -d \'{"plot_type": "bar", "field_1": "manufacturer", "field_2": "co2_emissions_gPERkm"}\'\n\nOption 3:\n    /jobs/download/JOBID:\n        Syntax:\n        /jobs/download/JOBID with JOBID being a user input.\n\n    What the inputs can be:\n    JOBID:\n        Input the jobid of the job that you wish to download\n    Returns:\n        returns a png of the graph downloaded to the current directory\n    Example:\n        /jobs/download/235234vs-234sgd-25gfdfgd-254235gdfg > output.png\n\nOption 4:\n    /jobs/delete_jobs:\n        Syntax:\n        /jobs/delete_jobs\n    What it does:\n        deletes all jobs from the list\n\n'
 
 @app.route('/jobs/delete_jobs', methods=['POST'])
 def jobs_delete():

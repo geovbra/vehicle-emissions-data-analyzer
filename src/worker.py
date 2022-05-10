@@ -49,7 +49,7 @@ def execute_job(jid):
         plt.xlabel(field_1)
         plt.ylabel(field_2)
         plt.savefig('bar_plot.png')
-        plt.tight_layout(pad=2)
+        plt.tight_layout(pad=25)
         
         with open('bar_plot.png', 'rb') as f:
             img = f.read()
@@ -70,7 +70,7 @@ def execute_job(jid):
         for row in data['vehicle_emissions']:
             y_axis.append(float(row[field_2]))
 
-        plt.scatter(x_axis, y_axis, c = "red", s=5)
+        plt.scatter(x_axis, y_axis, c = "red", s=2)
 
         plt.title('{} vs {}'.format(field_1, field_2))
         plt.xlabel(field_1)

@@ -41,7 +41,7 @@ def instantiate_job(jid, status, plot_type, field_1, field_2):
 
 def get_job_by_id(jid):
     
-    return jd[generate_job_key(jid)]
+    return jd[generate_job_key(jid).encode()]
 
 def save_job(job_key, job_dict):
     """Save a job object in the Redis database."""

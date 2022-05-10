@@ -270,8 +270,7 @@ def jobs_list():
     key_string = ""
 
     for key in jd.keys():
-        key_string += jsonify(jd.hget(key))
-
+        key_string += str(jd.hgetall(key)) + "\n"
     return key_string
 
 @app.route('/jobs/new_job', methods=['POST'])

@@ -14,25 +14,28 @@ def execute_job(jid):
     
     jobs.update_job_status(jid, 'in progress')
 
+    jobid = jobs.generate_job_key(jid).encode()
 
+    job_info = jd.hgetall(jobid)
+    
+    data = json.loads(rd.get('vehicle_emissions'))
 
-    job_info = jd.hget(jobs.generate_job_key(jid))
-
-    if job_info['plot_type'] == bar:
-
+    if job_info['plot_type'].decode() == "bar":
+        field_1 = job_info['field_1'].decode()
+        field_2 = job_info['field_2'].decode()
         x_axis = []
         y_axis = []
         total = 0
         iters = 0
-        for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
-            if row[job_info['field_1']] not in x_axis:
-                x_axis.append(row[job_info['field_1']])
+        for row in data['vehicle_emissions']:
+            if row[field_1] not in x_axis:
+                x_axis.append(row[field_1])
 
         for row in x_axis:
-            for wor in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
-                if row == wor[job_info['field_1']]:
+            for wor in data['vehicle_emissions']:
+                if row == wor[field_1]:
                     iters += 1
-                    total += float(wor[job_info['field_2']])
+                    total += float(wor[field_2])
 
             average = total/iters
             y_axis.append(average)
@@ -40,30 +43,35 @@ def execute_job(jid):
 
         plt.bar(x_axis, y_axis, width = 0.3)
 
-        plt.title('{} vs {}'.format(job_info['field_1'], job_info['field_2']))
-        plt.xlabel(job_info['field_1'])
-        plt.ylabel(job_info['field_2'])
+        plt.title('{} vs {}'.format(field_1, field_2))
+        plt.xlabel(field_1)
+        plt.ylabel(field_2)
         plt.savefig('bar_plot.png')
-
+        
         with open('bar_plot.png', 'rb') as f:
             img = f.read()
 
         jd.hset(jobid, 'image', img)
         jd.hset(jobid, 'status', 'finished')
 
-    if job_info['plot_type'] == scatter:
+    elif job_info['plot_type'].decode() == "scatter":
 
-        for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
-            x_axis.append(float(row[job_info['field_1']]))
+        field_1 = job_info['field_1'].decode()
+        field_2 = job_info['field_2'].decode()
+        x_axis = []
+        y_axis = []
 
-        for row in json.loads(rd.get('vehicle_emissions'))['vehicle_emissions']:
-            y_axis.append(float(row[job_info['field_2']]))
+        for row in data['vehicle_emissions']:
+            x_axis.append(float(row[field_1]))
+
+        for row in data['vehicle_emissions']:
+            y_axis.append(float(row[field_2]))
 
         plt.scatter(x_axis, y_axis, c = "red")
 
-        plt.title('{} vs {}'.format(job_info['field_1'], job_info['field_2']))
-        plt.xlabel(job_info['field_1'])
-        plt.ylabel(job_info['field_2'])
+        plt.title('{} vs {}'.format(field_1, field_2))
+        plt.xlabel(field_1)
+        plt.ylabel(field_2)
         plt.savefig('scatter_plot.png')
 
         with open('scatter_plot.png', 'rb') as f:
@@ -72,7 +80,7 @@ def execute_job(jid):
         jd.hset(jobid, 'image', img)
         jd.hset(jobid, 'status', 'finished')
 
-    time.sleep(15)
-    jobs.update_job_status(jid, 'complete')
+    else:
+        jd.hset(jobid, 'status', 'cancelled (invalid job type)')
 
 execute_job()

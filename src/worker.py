@@ -68,7 +68,7 @@ def execute_job(jid):
         for row in data['vehicle_emissions']:
             y_axis.append(float(row[field_2]))
 
-        plt.scatter(x_axis, y_axis, c = "red")
+        plt.scatter(x_axis, y_axis, c = "red", marker =".", markersize=1)
 
         plt.title('{} vs {}'.format(field_1, field_2))
         plt.xlabel(field_1)

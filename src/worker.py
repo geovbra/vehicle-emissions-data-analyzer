@@ -48,8 +48,8 @@ def execute_job(jid):
         plt.title('{} vs {}'.format(field_1, field_2))
         plt.xlabel(field_1)
         plt.ylabel(field_2)
+        plt.tight_layout(pad=25)
         plt.savefig('bar_plot.png')
-        plt.tight_layout()
         
         with open('bar_plot.png', 'rb') as f:
             img = f.read()

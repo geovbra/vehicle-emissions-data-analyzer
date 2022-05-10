@@ -303,7 +303,7 @@ def jobs_list():
     for key in jd.keys():
         for row in jd.hkeys(key):
             if row != b'image':
-                key_string += str(jd.hget(key, row))
+                key_string += str(row.decode()) + ": " + str(jd.hget(key, row).decode()) + ", "
         key_string += "\n"
     return key_string
 

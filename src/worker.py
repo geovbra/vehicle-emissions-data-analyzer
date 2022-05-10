@@ -16,7 +16,7 @@ def execute_job(jid):
 
 
 
-    job_info = jd.get(jobs.generate_job_key(jid))
+    job_info = jd.hget(jobs.generate_job_key(jid))
 
     if job_info['plot_type'] == bar:
 

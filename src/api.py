@@ -270,7 +270,7 @@ def jobs_list():
     key_string = ""
 
     for key in jd.keys():
-        key_string += jsonify(jd.get(key))
+        key_string += jsonify(jd.hget(key))
 
     return key_string
 

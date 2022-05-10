@@ -290,13 +290,21 @@ def jobs_how_to():
     """
     return 'jobs_test'
 
+@app.route('/jobs/delete_jobs', methods=['POST'])
+def jobs_delete():
+    jd.flushdb()
+    return "all jobs successfully deleted"
+
 @app.route('/jobs/list', methods=['GET'])
 def jobs_list():
 
     key_string = ""
 
     for key in jd.keys():
-        key_string += str(jd.hgetall(key)) + "\n"
+        for row in jd.hkeys(key):
+            if row != b'image':
+                key_string += str(jd.hget(key, row))
+        key_string += "\n"
     return key_string
 
 @app.route('/jobs/new_job', methods=['POST'])

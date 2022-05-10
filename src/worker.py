@@ -43,9 +43,10 @@ def execute_job(jid):
             iters = 0
             total = 0
 
-        plt.bar(x_axis, y_axis, width = 0.3, constrained_layout=True)
-        plt.xticks(rotation=90)
-      
+        plt.bar(x_axis, y_axis, width = 0.3)
+        plt.tight_layout()
+        plt.rc('font', size=6)
+        plt.xticks(rotation=45)
         plt.title('{} vs {}'.format(field_1, field_2))
         plt.xlabel(field_1)
         plt.ylabel(field_2)

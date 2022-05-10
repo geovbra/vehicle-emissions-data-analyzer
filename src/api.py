@@ -267,7 +267,7 @@ def jobs_how_to():
 @app.route('/jobs/list', methods=['GET'])
 def jobs_list():
 
-    key_string = []    
+    key_string = ""
 
     for key in jd.keys():
         key_string += jsonify(jd.get(key))
@@ -284,7 +284,7 @@ def jobs_api():
         job = request.get_json(force=True)
     except Exception as e:
         return json.dumps({'status': "Error", 'message': 'Invalid JSON: {}.'.format(e)})
-    return json.dumps(jobs.add_job(job['type'], job['field_1'], job['field_2']))
+    return json.dumps(jobs.add_job(job['plot_type'], job['field_1'], job['field_2']))
 
 
 @app.route('/jobs/download/<jobid>', methods=['GET'])

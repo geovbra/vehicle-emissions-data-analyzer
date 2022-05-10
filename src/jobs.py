@@ -53,7 +53,7 @@ def queue_job(jid):
 
 def add_job(plot_type, field_1, field_2, status="submitted"):
     """Add a job to the redis queue."""
-    jid = _generate_jid()
+    jid = generate_jid()
     job_dict = instantiate_job(jid, status, plot_type, field_1, field_2)
     save_job(generate_job_key(jid), job_dict)
     queue_job(jid)

@@ -9,6 +9,8 @@ RUN pip install --user redis
 
 RUN pip install --user hotqueue
 
+RUN pip install --user matplotlib
+
 RUN wget https://raw.githubusercontent.com/ReubenGitHub/ML-Vehicle-Emissions/main/data/processed/uk_gov_data_dense_preproc.csv
 
 COPY /src/api.py /app/api.py

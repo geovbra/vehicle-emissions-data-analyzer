@@ -21,13 +21,13 @@ spec:
         app: ved-test-wrk
     spec:
       containers:
-        - name: ved-test-api-pod
+        - name: ved-test-wrk-pod
           imagePullPolicy: Always
           image: geovbra/vmdata-wrk:0.1.0
 #          env:
 #          - name: FLASK_APP
 #            value: "api.py"
-          command: ['sh', '-c', 'python wrk.py ved-test-db-service']
+          command: ['sh', '-c', 'python worker.py ved-test-db-service']
           ports:
           - name: http
             containerPort: 5005

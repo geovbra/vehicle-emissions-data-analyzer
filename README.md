@@ -13,7 +13,7 @@ There are many curl endpoints that you can use to interact with the data, lets g
 
    
 
-     How to use our Vehicle Emissions Analyzer
+        How to use our Vehicle Emissions Analyzer
         
         Step 1:
         Reset the data in the kubernetes database by running a curl request with endpoint /reset -X POST

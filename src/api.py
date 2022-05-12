@@ -23,9 +23,6 @@ def how_to():
         string: all of the possible inputs that the server is looking for.
     """
 
-
-
-
     return '\n\n----------------------------------------\nHow to use our Vehicle Emissions Analyzer\n----------------------------------------\n\nStep 1:\nReset the data in the kubernetes database by running a curl request with endpoint /reset -X POST\n\nStep 2:\nEvery part of CRUD is available. For instructions on how to use each route, use:\n    /create\n    /read\n    /update\n    /delete\n    /jobs\n\n'
 
 @app.route('/reset', methods=['POST'])
@@ -68,6 +65,16 @@ def read_how_to():
 
 @app.route('/read/<string:key>', methods=['GET'])
 def read(key:str):
+    """
+    Reads out data to the user using the specific key value pair provided.
+    
+    Input:
+        key <string>: the specific field that the user would like to evaluate.
+        start <string>: the specific value for <key> which the user would like to evaluate.
+
+    Returns:
+        json data for the specific key value pair queried.
+    """
 
     temp_data = []
 
@@ -162,6 +169,17 @@ def update_how_to():
 
 @app.route('/update/<string:ID>', methods=['POST'])
 def update_data(ID:str):
+    """
+    Updates data to the specifications of the user's inputs.
+    
+    Input:
+        ID <string>: the specific car_id that the user would like to update.
+        FIELD <string>: the specific field for the car_id which the user would like to update.
+        VALUE <string>: the specific value for the field which the user would like to update.
+
+    Returns:
+        json data for the newly updated data entry.
+    """
 
     ID = int(float(ID))
 
@@ -209,6 +227,15 @@ def create_how_to():
 
 @app.route('/create/new_entry', methods=['POST'])
 def create_data():
+    """
+    creates data with the specifications of the user's inputs.
+    
+    Input:
+        VALUE <string>: the specific value for each field which the user is creating in the new data entry.
+
+    Returns:
+        json data for the newly updated created entry.
+    """
     
     temp_data = json.loads(rd.get('vehicle_emissions'))
 
@@ -264,6 +291,16 @@ def delete_how_to():
 
 @app.route("/delete/<string:field>", methods=['POST'])
 def delete(field:str):
+    """
+    deletes data with the specifications of the user's inputs.
+    
+    Input:
+        field <string>: the specific field to look for when looking at field value pairs to delete.
+        value <string>: the value to look for when looking at field value pairs to delete.
+
+    Returns:
+        string letting the user know if their request was successful.
+    """
 
     temp_data = json.loads(rd.get('vehicle_emissions'))
     new_data = {}
@@ -292,11 +329,24 @@ def jobs_how_to():
 
 @app.route('/jobs/delete_jobs', methods=['POST'])
 def jobs_delete():
+    """
+    deletes all jobs from the job list.
+    
+    Returns:
+        string letting the user know that the jobs were deleted
+    """
+    
     jd.flushdb()
     return "all jobs successfully deleted"
 
 @app.route('/jobs/list', methods=['GET'])
 def jobs_list():
+    """
+    Reads all jobs from the job list.
+    
+    Returns:
+        string containing all of the jobs within the list with their ids and descriptions.
+    """
 
     key_string = ""
 
@@ -322,6 +372,16 @@ def jobs_api():
 
 @app.route('/jobs/download/<jobid>', methods=['GET'])
 def download(jobid):
+    """
+    downloads a job's contents to the user's current directory.
+    
+    Input:
+        jobid <string>: the id of the jo that you would like to download data from.
+
+    Returns:
+        A .png file to the user's current directory.
+    """
+
     path = f'/app/{jobid}.png'
     with open(path, 'wb') as f:
         f.write(jd.hget(jobs.generate_job_key(jobid).encode(), b'image'))

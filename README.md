@@ -55,7 +55,7 @@ KEY:
 VALUE:
     Using the read/all route, find a value for your field that you would like to evaluate (IE: read/manufacturer?start=MERCEDES-BENZ)
 ```
-The same is true for /create, /update, /delete, and /jobs.
+/create, /update, /delete, and /jobs each also have their own in-depth explanations when their routes are curled.
 
 4. Each of the CRUD functions only deal with reading and altering data within the redis database itself, however, the /jobs route will analyze two fields within the dataset given by user input. It then returns a .png that the user can download which depicts either a bar graph or a scatterplot of the two fields with one being the x-axis and the other being the y-axis. When calling the download route, the .png will be stored in the current directory that the user's terminal is in and can be easily opened in the local computer's file explorer.
 

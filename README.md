@@ -4,7 +4,7 @@ This repo contains the files to create and run kubernetes with a flask server co
 ## What Data Does It Use?
 The dataset can be found [here](https://www.kaggle.com/datasets/reubenowenwilliams/vehicle-emissions-dataset?resource=download), and the raw data can be found [here](https://raw.githubusercontent.com/ReubenGitHub/ML-Vehicle-Emissions/main/data/processed/uk_gov_data_dense_preproc.csv).
 ## How Start it Up!
-To use the application, first pull the repository to your own machine. Next you will need to run the Makefile. To do this, execute `make upd-all` within your terminal. This command will delete the old containers, build new containers, run the new containers, and push them to the docker hub. Then you will need to set up your kubernetes. To do this, within your kubernetes cloud, find the kubernetes folder and start up all of the `.yml` files within it. To start them, execute `kubectl apply -f "INSERT .yml FILE HERE"` without the quotes. You will have to repeat this process for every .yml file. After this you should be good to start curling the flask server!
+To use the application, first pull the repository to your own machine. Next you will need to run the Makefile. To do this, execute `make upd-all` within your terminal. This command will build new containers and push them to the docker hub. Then you will need to set up your kubernetes. To do this, within your kubernetes cloud, find the kubernetes folder and start up all of the `.yml` files within either the test or production folder. To start them, execute `kubectl apply -f "INSERT .yml FILE HERE"` without the quotes. You will have to repeat this process for every .yml file. After this you should be good to start curling the flask server!
 ## Curling the Flask Server!
 There are many curl endpoints that you can use to interact with the data, let's go through each of them and what they do.
 1. The first endpoint that you must curl is /reset. To do this, execute `curl https://isp-proxy.tacc.utexas.edu/geovbra-2/reset -X POST`. This will reset the data and push it to the redis database.
@@ -64,7 +64,7 @@ To test that the flask app is working properly, simply execute this command: `py
 
     ================================ test session starts ================================
     platform linux -- Python 3.6.8, pytest-7.0.0, pluggy-1.0.0
-    rootdir: /home/jagger/coe-332/Final/vehicle-emissions-data-analyzer/test
+    rootdir: /vehicle-emissions-data-analyzer/test
     collected 5 items
     
     test_flask.py . . . . . [100%]

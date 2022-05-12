@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ved-prod-db-deployment
+  labels:
+    username: ved
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      username: ved
+      env: prod
+      app: ved-prod-db
+  template:
+    metadata:
+      labels:
+        username: ved
+        env: prod
+        app: ved-prod-db
+    spec:
+      containers:
+        - name: redis
+          image: redis:5.0.0
+          volumeMounts:
+          - name: ved-prod-db-volume
+            mountPath: "/data"
+      volumes:
+      - name: ved-prod-db-volume
+        persistentVolumeClaim:
+          claimName: ved-prod-db-pvc

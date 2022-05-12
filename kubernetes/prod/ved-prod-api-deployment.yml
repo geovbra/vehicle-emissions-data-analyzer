@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ved-prod-api-deployment
+  labels:
+    username: ved
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      username: ved
+      env: prod
+      app: ved-prod-api
+  template:
+    metadata:
+      labels:
+        username: ved
+        env: prod
+        app: ved-prod-api
+    spec:
+      containers:
+        - name: ved-prod-api-pod
+          imagePullPolicy: Always
+          image: geovbra/vmdata-api:1.0.0
+#          env:
+#          - name: FLASK_APP
+#            value: "api.py"
+          command: ['sh', '-c', 'python api.py ved-prod-db-service']
+          ports:
+          - name: http
+            containerPort: 5005

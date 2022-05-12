@@ -1,4 +1,4 @@
- Vehicle Emissions Data Analyzer
+# Vehicle Emissions Data Analyzer
 ## What is This Repo?
 This repo contains the files to create and run kubernetes with a flask server contained inside that allows the user to analyze a dataset about the emissions of cars.
 ## What Data Does It Use?
@@ -58,3 +58,16 @@ VALUE:
 The same is true for /create, /update, /delete, and /jobs.
 
 4. Each of the CRUD functions only deal with reading and altering data within the redis database itself, however, the /jobs route will analyze two fields within the dataset given by user input. It then returns a .png that the user can download which depicts either a bar graph or a scatterplot of the two fields with one being the x-axis and the other being the y-axis. When calling the download route, the .png will be stored in the current directory that the user's terminal is in and can be easily opened in the local computer's file explorer.
+
+## How to Test Flask
+To test that the flask app is working properly, simply execute this command: `pytest`. If everything is working as it should, you should get this output:
+
+    ================================ test session starts ================================
+    platform linux -- Python 3.6.8, pytest-7.0.0, pluggy-1.0.0
+    rootdir: /home/jagger/coe-332/Final/vehicle-emissions-data-analyzer/test
+    collected 5 items
+    
+    test_flask.py . . . . . [100%]
+    
+    ================================= 5 passed in 0.27s ================================
+Each of the dots signify one successful test.

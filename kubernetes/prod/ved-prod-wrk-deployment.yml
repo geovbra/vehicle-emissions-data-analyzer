@@ -2,32 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ved-test-wrk-deployment
+  name: ved-prod-wrk-deployment
   labels:
     username: ved
-    env: test
+    env: prod
 spec:
   replicas: 2
   selector:
     matchLabels:
       username: ved
-      env: test
-      app: ved-test-wrk
+      env: prod
+      app: ved-prod-wrk
   template:
     metadata:
       labels:
         username: ved
-        env: test
-        app: ved-test-wrk
+        env: prod
+        app: ved-prod-wrk
     spec:
       containers:
-        - name: ved-test-wrk-pod
+        - name: ved-prod-api-pod
           imagePullPolicy: Always
-          image: geovbra/vmdata-wrk:0.1.0
+          image: geovbra/vmdata-wrk:1.0.0
 #          env:
 #          - name: FLASK_APP
 #            value: "api.py"
-          command: ['sh', '-c', 'python worker.py ved-test-db-service']
+          command: ['sh', '-c', 'python worker.py ved-prod-db-service']
           ports:
           - name: http
             containerPort: 5005

@@ -1,4 +1,4 @@
-# Vehicle Emissions Data Analyzer
+ Vehicle Emissions Data Analyzer
 ## What is This Repo?
 This repo contains the files to create and run kubernetes with a flask server contained inside that allows the user to analyze a dataset about the emissions of cars.
 ## What Data Does It Use?
@@ -6,9 +6,9 @@ The dataset can be found [here](https://www.kaggle.com/datasets/reubenowenwillia
 ## How Start it Up!
 To use the application, first pull the repository to your own machine. Next you will need to run the Makefile. To do this, execute `make upd-all` within your terminal. This command will delete the old containers, build new containers, run the new containers, and push them to the docker hub. Then you will need to set up your kubernetes. To do this, within your kubernetes cloud, find the kubernetes folder and start up all of the `.yml` files within it. To start them, execute `kubectl apply -f "INSERT .yml FILE HERE"` without the quotes. You will have to repeat this process for every .yml file. After this you should be good to start curling the flask server!
 ## Curling the Flask Server!
-There are many curl endpoints that you can use to interact with the data, lets go through each of them and what they do.
+There are many curl endpoints that you can use to interact with the data, let's go through each of them and what they do.
 1. The first endpoint that you must curl is /reset. To do this, execute `curl https://isp-proxy.tacc.utexas.edu/geovbra-2/reset -X POST`. This will reset the data and push it to the redis database.
-2. The next endpoint to curl is the "help" endpoint. To do this execute `curl https://isp-proxy.tacc.utexas.edu/geovbra-2/`. This will list all of the available curl endpoints like this:
+2. The next endpoint to curl is the "help" endpoint. To do this, execute `curl https://isp-proxy.tacc.utexas.edu/geovbra-2/`. This will list all of the available curl endpoints like this:
 
 
    
@@ -57,4 +57,4 @@ VALUE:
 ```
 The same is true for /create, /update, /delete, and /jobs.
 
-4. Each of the CRUD functions only deal with reading and altering data within the redis database itself, however, the /jobs route will analyze two fields within the dataset given by user input. It then returns a png that the user can download which depicts either a bar graph or a scatterplot of the two fields with one being the x-axis and the other being the y-axis. When calling the download route, the png will be stored in the current directory that the user's terminal is in adn can be easily opened in the local computer's file explorer.
+4. Each of the CRUD functions only deal with reading and altering data within the redis database itself, however, the /jobs route will analyze two fields within the dataset given by user input. It then returns a .png that the user can download which depicts either a bar graph or a scatterplot of the two fields with one being the x-axis and the other being the y-axis. When calling the download route, the .png will be stored in the current directory that the user's terminal is in and can be easily opened in the local computer's file explorer.
